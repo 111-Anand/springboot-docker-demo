@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spring Boot App UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Spring Boot Demo</h1>
+  <button onclick="fetchMessage()">Say Hello</button>
+  <div id="output"></div>
+
+  <script>
+    function fetchMessage() {
+      fetch('/api/hello') // Assuming this file is served from the same domain as backend
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('output').textContent = data;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('output').textContent = 'Failed to fetch message';
+        });
+    }
+  </script>
+
+</body>
+</html>
